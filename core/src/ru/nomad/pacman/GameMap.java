@@ -128,22 +128,28 @@ public class GameMap implements Serializable {
     }
 
     public boolean isCellEmpty(int cellX, int cellY) {
+        if (cellX < 0) return data[mapSizeX - 1][cellY] != CellType.WALL;
+        if (cellX > mapSizeX - 1) return data[0][cellY] != CellType.WALL;
         return data[cellX][cellY] != CellType.WALL;
     }
 
     public boolean checkFoodEating(float x, float y) {
-        if (data[(int) x][(int) y] == CellType.FOOD) {
-            data[(int) x][(int) y] = CellType.EMPTY;
-            foodCount--;
-            return true;
+        if (0 <= x && x <= mapSizeX - 1) {
+            if (data[(int) x][(int) y] == CellType.FOOD) {
+                data[(int) x][(int) y] = CellType.EMPTY;
+                foodCount--;
+                return true;
+            }
         }
         return false;
     }
 
     public boolean checkCherryEating(float x, float y) {
-        if (data[(int) x][(int) y] == CellType.CHERRY) {
-            data[(int) x][(int) y] = CellType.EMPTY;
-            return true;
+        if (0 <= x && x <= mapSizeX - 1) {
+            if (data[(int) x][(int) y] == CellType.CHERRY) {
+                data[(int) x][(int) y] = CellType.EMPTY;
+                return true;
+            }
         }
         return false;
     }
@@ -157,6 +163,8 @@ public class GameMap implements Serializable {
                 }
             }
         }
+        if (srcX < 0) srcX = 0;
+        if (srcX > mapSizeX - 1) srcX = mapSizeX - 1;
         arr[srcX][srcY] = 1;
         updatePoint(arr, srcX, srcY, 2);
         int lastPoint = -1;

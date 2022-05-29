@@ -58,6 +58,7 @@ public abstract class Unit implements Serializable {
             switch (direction) {
                 case RIGHT:
                     if (gameMap.isCellEmpty((int) position.x + 1, (int) position.y)) {
+                        if (position.x > gameMap.getMapSizeX() - 1) position.x = -1;
                         destination.set(position.x + 1, position.y);
                         rotation = 0;
                         flipX = false;
@@ -66,6 +67,7 @@ public abstract class Unit implements Serializable {
                     break;
                 case LEFT:
                     if (gameMap.isCellEmpty((int) position.x - 1, (int) position.y)) {
+                        if (position.x < 0) position.x = gameMap.getMapSizeX();
                         destination.set(position.x - 1, position.y);
                         rotation = 0;
                         flipX = true;

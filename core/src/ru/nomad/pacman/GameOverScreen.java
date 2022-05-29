@@ -59,6 +59,7 @@ public class GameOverScreen implements Screen {
 //        music.play();
         createGUI();
         setupResults();
+        Assets.getInstance().playMusic();
     }
 
     @Override

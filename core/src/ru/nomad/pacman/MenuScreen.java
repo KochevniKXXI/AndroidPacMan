@@ -27,9 +27,7 @@ public class MenuScreen implements Screen {
     public void show() {
         font32 = Assets.getInstance().getAssetManager().get("zorque32.ttf", BitmapFont.class);
         font96 = Assets.getInstance().getAssetManager().get("zorque96.ttf", BitmapFont.class);
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("Jumping bat.wav"));
-        music.setLooping(true);
-        music.play();
+        Assets.getInstance().playMusic();
         createGUI();
     }
 

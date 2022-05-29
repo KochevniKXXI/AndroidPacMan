@@ -84,6 +84,7 @@ public class GameScreen implements Screen {
         this.huntTimer = 0.0f;
         this.createGUI();
         this.paused = false;
+        Assets.getInstance().stopMusic();
     }
 
     public void createGUI() {
@@ -163,7 +164,7 @@ public class GameScreen implements Screen {
             }
         });
 
-//        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+       if (Gdx.app.getType() == Application.ApplicationType.Android) {
             Button btnLeft = new TextButton("<", skin, "simpleSkin");
             Button btnRight = new TextButton(">", skin, "simpleSkin");
             Button btnUp = new TextButton("^", skin, "simpleSkin");
@@ -224,7 +225,7 @@ public class GameScreen implements Screen {
                     pacMan.setPrefferedDirection(Unit.Direction.NONE);
                 }
             });
-//        }
+        }
     }
 
     public void restartGame() {
@@ -269,6 +270,7 @@ public class GameScreen implements Screen {
     }
 
     public void update(float dt) {
+        // TODO: Перенести сохранение на Android
         if (Gdx.input.isKeyJustPressed(Input.Keys.F2)) {
             new GameSession(pacMan, gameMap, monsters).saveSession();
         }

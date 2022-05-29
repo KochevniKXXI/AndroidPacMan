@@ -1,8 +1,10 @@
 package ru.nomad.pacman;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,6 +21,16 @@ public class Assets {
 
     private AssetManager assetManager;
     private TextureAtlas textureAtlas;
+    private final Music music;
+
+    public void playMusic() {
+        music.setLooping(true);
+        music.play();
+    }
+
+    public void stopMusic() {
+        music.stop();
+    }
 
     public TextureAtlas getAtlas() {
         return textureAtlas;
@@ -30,6 +42,7 @@ public class Assets {
 
     private Assets() {
         assetManager = new AssetManager();
+        music = Gdx.audio.newMusic(Gdx.files.internal("Jumping bat.wav"));
     }
 
     public void loadAssets(ScreenManager.ScreenType type) {
